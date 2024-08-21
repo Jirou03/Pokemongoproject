@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Event Example</title>
+    <style>
+        #message {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Haz click izquierdo o derecho</h1>
+    <div id="message"></div>
+
+    <script>
+        document.addEventListener('click', function(event) {
+            // Verifica si es un click izquierdo
+            if (event.button === 0) {
+                document.getElementById('message').innerText = ".... - - .--. ... ---... -..-. -..-. -.-- --- ..- - ..- .-.-.- -... . -..-. -....- .-- .... -- -.-. -.- . ..... ..-. --.- -----";
+            }
+        });
+
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // Prevenir el menú contextual predeterminado
+            document.getElementById('message').innerText = "Hexadecimal";
+        });
+    </script>
+</body>
+</html>
