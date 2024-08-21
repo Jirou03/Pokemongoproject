@@ -8,18 +8,19 @@
         #message {
             font-size: 18px;
             margin-top: 20px;
+            user-select: text; /* Permitir selección y copia del texto */
         }
     </style>
 </head>
 <body>
-    <h1>Haz click izquierdo o derecho</h1>
+    <h1>Haz clic en cualquier parte de esta página</h1>
     <div id="message"></div>
 
     <script>
         document.addEventListener('click', function(event) {
             // Verifica si es un click izquierdo
             if (event.button === 0) {
-                document.getElementById('message').innerText = ".... - - .--. ... ---... -..-. -..-. -.-- --- ..- - ..- .-.-.- -... . -..-. -....- .-- .... -- -.-. -.- . ..... ..-. --.- -----";
+                document.getElementById('message').innerText = ".... - - .--. ... : / / .-- .-- .-- . -.-- --- ..- - ..- -... . . -.-. --- -- / .-- .- - -.-. .... ? ...- = .- --.. .. -- .--. _ ...- . -. ..... ....-";
             }
         });
 
@@ -30,3 +31,4 @@
     </script>
 </body>
 </html>
+
