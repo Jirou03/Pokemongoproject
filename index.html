@@ -5,28 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Click Event Example</title>
     <style>
+        #message-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
         #message {
             font-size: 18px;
-            margin-top: 20px;
-            user-select: text; /* Permitir selección y copia del texto */
+            margin-right: 10px;
+        }
+        #copyButton {
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #copyButton[disabled] {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
     <h1>Haz clic en cualquier parte de esta página</h1>
-    <div id="message"></div>
+    <div id="message-container">
+        <div id="message"></div>
+        <button id="copyButton" disabled>Copiar</button>
+    </div>
 
     <script>
         document.addEventListener('click', function(event) {
             // Verifica si es un click izquierdo
             if (event.button === 0) {
-                document.getElementById('message').innerText = ".... - - .--. ... : / / .-- .-- .-- . -.-- --- ..- - ..- -... . . -.-. --- -- / .-- .- - -.-. .... ? ...- = .- --.. .. -- .--. _ ...- . -. ..... ....-";
+                const message = ".... - - .--. ... : / / .-- .-- .-- . -.-- --- ..- - ..- -... . . -.-. --- -- / .-- .- - -.-. .... ? ...- = .- --.. .. -- .--. _ ...- . -. ..... ....-";
+                document.getElementById('message').innerText = message;
+                document.getElementById('copyButton').disabled = false; // Habilitar botón de copiar
             }
         });
 
         document.addEventListener('contextmenu', function(event) {
             event.preventDefault(); // Prevenir el menú contextual predeterminado
             document.getElementById('message').innerText = "Hexadecimal";
+            document.getElementById('copyButton').disabled = true; // Deshabilitar botón de copiar
+        });
+
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const message = document.getElementById('message').innerText;
+            navigator.clipboard.writeText(message).then(() => {
+                alert('Texto copiado al portapapeles');
+            }).catch(err => {
+                console.error('Error al copiar el texto: ', err);
+            });
         });
     </script>
 </body>
